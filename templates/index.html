@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for post in posts %}
+        {% if loop.first %}
+            <h1><a href="/{{ post.date_posted|date("%Y") }}/{{ post.date_posted|date("%m") }}/{{ post.slug }}">{{ post.title|upper }}</a></h1>
+						<div class="submitted">{{ post.date_posted|date("%d %B %Y &mdash; %H:%M") }}</div>
+						{{ post.content|truncate(length=500) }}
+						<div class="meta-links">
+						    <a href="/{{ post.date_posted|date("%Y") }}/{{ post.date_posted|date("%m") }}/{{ post.slug }}#disqus_thread" data-disqus-identifier="{{ post.key() }}">Комментарии (0)</a>
+						    {% if post.tag_set.count() > 0 %}Теги: {% for tag in post.tag_set %}{{ tag.name }}{% endfor %}{% endif %}
+						</div>
+						<div class="double-line"></div>
+				{% else %}
+						<h2><a href="/{{ post.date_posted|date("%Y") }}/{{ post.date_posted|date("%m") }}/{{ post.slug }}">{{ post.title|upper }}</a></h2>
+						<div class="submitted">{{ post.date_posted|date("%d %B %Y") }} г. &mdash; {{ post.date_posted|date("%H:%M") }}</div>
+						{{ post.content|truncate }}
+						<div class="meta-links">
+                <a href="/{{ post.date_posted|date("%Y") }}/{{ post.date_posted|date("%m") }}/{{ post.slug }}#disqus_thread" data-disqus-identifier="{{ post.key() }}">Комментарии (0)</a>
+                {% if post.tag_set.count() > 0 %}Теги: {% for tag in post.tag_set %}{{ tag.name }}{% endfor %}{% endif %}
+            </div>
+				{% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block bottom_js %}
+<script type="text/javascript">
+    var disqus_shortname = 'greggy';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+{% endblock %}

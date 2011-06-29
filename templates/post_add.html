@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block extra_head %}
+<script type="text/javascript" src="/js/wmd/wmd.js"></script>
+<script type="text/javascript">
+wmd_options = {
+    buttons: "bold italic | link blockquote code image | p ol ul heading hr",
+    autostart: true
+};
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="post-add">
+    <form action="/post" method="post" enctype="multipart/form-data">
+    {% for field in form %}
+        {% if field.errors %}
+        <ul class="errors">{% for error in field.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+        {% if field.type == "BooleanField" %}
+        <div>{{ field.label }}: {{ field(value=True) }}</div>
+        {% else %}
+        <div>{{ field.label }}:{% if field.flags.required %} *{% endif %}<br />{{ field(class="any_class") }}</div>
+        {% endif %}
+    {% endfor %}
+        <div><label for="image_title">Название:</label> <input type="text" name="image_title" id="image_title" /></div>
+        <div><label for="image">Файл:</label><br /> <input type="file" name="image" id="image" /></div>
+        <div><label for="tags">Теги:</label><br /><input type="text" name="tags" id="tags" /></div>
+        <div><input type="submit" value="Add post" /></div>
+    </form>
+</div>
+{% endblock %} 
+
+{% block right %}{% endblock %}

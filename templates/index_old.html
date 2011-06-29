@@ -1,0 +1,14 @@
+<h1>Braindump</h1>
+
+{% if posts.count() > 0 %}
+{% for post in posts %}
+<div>
+    <h2><a href="/{{ post.date_posted|date("%Y") }}/{{ post.date_posted|date("%m") }}/{{ post.slug }}">{{ post.title|upper }}</a></h2>
+    {% if post.tag_set.count() > 0 %}<div>Tags: {% for tag in post.tag_set %}{{ tag.name }}{% endfor %}</div>{% endif %}
+    <small>Date: {{ post.date_posted|date("%d/%m/%Y") }}</small>
+    <div>{{ post.content }}</div>
+<div>
+{% endfor %}
+{% else %}
+<h2>Сообщений в блоге пока нет.</h2>
+{% endif %}

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Braindump.ru :: Главная страница</title>
+<script src="http://yandex.st/highlightjs/5.16/highlight.min.js"></script>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
+<link rel="stylesheet" href="http://yandex.st/highlightjs/5.16/styles/default.min.css">
+<link type="text/css" rel="stylesheet" media="all" href="/css/style.css" />
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+<div id="super">
+	<div id="main">
+		<a id="logo" href="/" title="Главная страница Braindump.ru"></a>
+		<div id="main-menu">			
+			<div id="dark-red-line"></div>
+			<a id="link-mainpage" class="active" href="/" title="Главная страница Braindump.ru"></a>
+			<a id="link-izbran" href="/" title="Избранное"></a>
+			<a id="link-services" href="/" title="Сервисы"></a>
+			<a id="link-works" href="/" title="Мои работы: портфолио"></a>
+			<a id="link-friends" href="/" title="Мои друзья"></a>
+			<a id="link-recommends" href="/" title="Рекомендую"></a>
+			<a id="link-contacts" href="/" title="Контактная информация"></a>
+			<div id="light-red-line"></div>
+			<div id="main-menu-left"></div>
+			<div id="main-menu-right"></div>
+			<div id="menu-shadow">
+				<div id="menu-shadow-left"></div>
+				<div id="menu-shadow-right"></div>
+			</div>
+		</div>
+		<div id="breadcrumbs">
+			<a href="/">Главная</a> &rarr;     
+			<a href="/">Статьи</a> &rarr;     
+			<a href="/">Другие</a>
+		</div>		
+    <div id="pagebody">
+			<table id="pagebody-table">
+				<tbody>
+					<tr>
+            <td id="main">
+              {% block content %}{% endblock %} 
+						</td>
+						{% block right %}
+						<td id="second">
+							<div class="right-area-block">
+							  <h3>Последние комментарии</h3>
+								<div class="block-tl"></div>
+								<div class="block-tr"></div>
+								<div class="block-bl"></div>
+								<div class="block-br"></div>
+							</div>
+							<div class="right-area-block">
+							  <h3>Облако тегов</h3>
+								<p>{% for tag in tags %}<span style='font-size: {{ tag.size }}px'>{{ tag.name }}</span> {% endfor %}</p>
+							</div>
+							<div class="right-area-block">
+								<p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.</p>
+							</div>
+						</td>
+						{% endblock %}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br clear="all" />		
+	</div>
+</div>
+<div id="footer">
+	<p align="center">Greg &copy; 2010 г.</p>
+</div>
+
+{% block bottom_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+application: gfborn
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /images
+  static_dir: site_media/images
+
+- url: /css
+  static_dir: site_media/css
+  
+- url: /js
+  static_dir: site_media/js
+
+- url: .*
+  script: main.py
